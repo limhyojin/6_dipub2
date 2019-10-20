@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>활동적인 사이트</title>
+	<link href="https://fonts.googleapis.com/css?family=Fredoka+One|Permanent+Marker&display=swap" rel="stylesheet">
+</head>
+<style type="text/css">
+	html, body, section, div, h1,img {margin: 0; padding: 0;}
+
+	.circle{border-radius: 100%;width: 40px; height: 40px; position: absolute; animation: rr 7s alternate infinite ease-in;background:rgb(255,0,255); z-index:-1;}
+	.circle:hover{opacity: 0; background: black;}
+	.sec1 {position: sticky; height: 2000px; z-index: -2; }
+	#text1 {position: fixed; font-size: 170px; left :50%; top: 45%;transform:translate(-50%, -70%); z-index: 3;font-family: 'Permanent Marker', cursive;}
+	#monitor{position: fixed; background: black;padding: 5px; top:0; right:0;width: 70px;height:20px; color:white;}
+	footer {position:relative; background-color: black;height: 50px;}
+	.foot {position:absolute;color:white; left:50%; transform: translateX(-50%);}
+	.but{float: left; width:100px;}
+	#buts{position: fixed; height: 100px; left:50%;transform: translateX(-50%);top:58%; background-color: none;}
+	#pl {left:50%;}
+	#pa{left:60%;}
+	.img{width:700px;   filter: brightness(50%); margin-left:200px;}
+	#imgs{position: fixed;z-index: 0; width: 10000px;top:23%; opacity: 0;}
+	#info{position: fixed;left:50%;transform: translateX(-50%);top:85%;
+	font-size: 20px;animation: op 0.5s 2s alternate infinite; opacity: 0;}
+
+
+	
+	@keyframes rr{
+				from{bottom:800px}
+				to{bottom: 0;}
+			}
+
+	@keyframes ss{
+		from{background-color: white;}
+		to{background: black;}
+	}
+	@keyframes move{
+		from{left:100%;}
+		to{left:-600%;}
+	}
+	@keyframes op{
+		from{opacity: 0;}
+		to{opacity: 1;}
+	}
+</style>
+<body>
+	<div class="wrap">
+		<div id="monitor" style="z-index: 3;"></div>
+		<div class="circle" id="cc"></div>
+	<section class="sec1" id="s1">
+	</section>
+	
+
+	<h1 id="text1">Play it!</h1>
+	<p id="info">Scroll</p>
+	<div id="imgs">
+	<img src ="run.jpg" class="img">
+	<img src ="heavy.jpg" class="img">
+	<img src ="punch.jpg" class="img">
+	<img src ="bike.jpg" class="img">
+	<img src ="shoes.jpg" class="img">
+	<img src ="moter.jpg" class="img">
+	<img src ="golf.jpg" class="img">
+	<img src ="jump.jpg" class="img">
+	<img src ="snow.jpg" class="img">
+</div>
+
+<div id="buts">
+	<img src = "play.svg" class="but" id="pl">
+	<img src = "pause.svg" class="but" id="pa">
+	<audio src="pop.mp3" loop id="music"></audio></div>
+	
+
+
+	<footer><p class="foot">Copyrightⓒ2019 limhyojin All rights reserved.</p></footer>
+
+</div>
+
+	<script type="text/javascript">
+		for (var i=0; i<25; i++){
+			var b = cc.cloneNode(true);
+			b.id = i;
+			b.style.position = "fixed";
+			b.style.left = Math.random()*window.innerWidth + "px";
+			b.style.animationDuration = Math.random()*12 + "s";
+			b.style.width = b.style.height = Math.random()*80 + "px";
+			
+			b.style.background = makeColor();
+			b.onmouseover=function(e){
+				e.target.style.borderRadius = "0%";
+
+			}
+			document.body.appendChild(b);
+		}
+		function makeColor() {
+				var rr = Math.random()*255;
+				var gg = Math.random()*255;
+				var bb = Math.random()*255;
+				var tt = "rgb(" + rr + "," + gg + "," + bb +")";
+				return tt; 
+			}
+			window.onscroll = function(){
+		var t = document.documentElement.scrollTop + document.body.scrollTop;
+		console.log(t);
+		monitor.innerHTML = t.toFixed(1);
+
+		
+		if(t>500){s1.style.animation="ss 0.5s forwards";
+		text1.style.color="white";
+		buts.style.backgroundColor="white";
+		pl.onclick = function(){
+		music.play();
+		imgs.style.animation="move 25s infinite ease-in";
+		imgs.style.opacity="1";
+
+		}
+		pa.onclick = function(){
+		music.pause();
+		imgs.style.opacity="0";
+	}
+
+
+		}
+		else{s1.style.animation = ""; text1.style.color="";
+		buts.style.backgroundColor=""; imgs.style.opacity="";
+		}
+
+
+	}
+	
+
+	</script>
+
+</body>
+</html>
